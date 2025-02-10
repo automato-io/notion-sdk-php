@@ -25,9 +25,7 @@ final class TableRenderer implements BlockRendererInterface
 
         $header = self::renderRow($rows[0]);
         $markdown .= $header . "\n";
-        if ($block->hasColumnHeader) {
-            $markdown .= str_repeat("| --- ", count($rows[0]->cells)) . "|\n";
-        }
+        $markdown .= str_repeat("| --- ", count($rows[0]->cells)) . "|\n";
 
         for ($i = 1; $i < count($rows); $i++) {
             $markdown .= self::renderRow($rows[$i]) . "\n";

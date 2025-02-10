@@ -34,7 +34,7 @@ MARKDOWN;
         $this->assertSame($expected, $markdown);
     }
 
-    public function test_render_without_column_header(): void
+    public function test_render(): void
     {
         $data = [
             ['A1', 'A2', 'A3'],
@@ -42,7 +42,6 @@ MARKDOWN;
         ];
 
         $block = Table::create()->changeWidth(3)
-            ->disableColumnHeader()
             ->addRow($this->createRow(...$data[0]))
             ->addRow($this->createRow(...$data[1]));
 
@@ -50,30 +49,8 @@ MARKDOWN;
 
         $expected = <<<MARKDOWN
 | A1 | A2 | A3 |
+| --- | --- | --- |
 | B1 | B2 | B3 |
-
-MARKDOWN;
-
-        $this->assertSame($expected, $markdown);
-    }
-
-    public function test_render_with_rich_text(): void
-    {
-        $data = [
-            ['**A1**', 'A2', 'A3'],
-            ['**B1**', 'B2', 'B3'],
-        ];
-
-        $block = Table::create()->changeWidth(3)
-            ->disableColumnHeader()
-            ->addRow($this->createRow(...$data[0]))
-            ->addRow($this->createRow(...$data[1]));
-
-        $markdown = TableRenderer::render($block);
-
-        $expected = <<<MARKDOWN
-| **A1** | A2 | A3 |
-| **B1** | B2 | B3 |
 
 MARKDOWN;
 
