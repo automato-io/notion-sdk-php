@@ -50,7 +50,7 @@ class Table implements BlockInterface
         $tableWidth = $table["table_width"];
         $hasColumnHeader = $table["has_column_header"];
         $hasRowHeader = $table["has_row_header"];
-        $rows = array_map(fn(array $row) => TableRow::fromArray($row), $table["children"]);
+        $rows = array_map(fn(array $row) => TableRow::fromArray($row), $table["children"] ?? []);
 
         return new self($block, $tableWidth, $hasColumnHeader, $hasRowHeader, $rows);
     }
