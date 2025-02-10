@@ -15,10 +15,8 @@ final class CalloutRenderer implements BlockRendererInterface
             return "";
         }
 
-        $emoji = $block->icon->isEmoji() ? $block->icon->emoji->toString() . " " : "";
         $text = RichTextRenderer::render(...$block->text);
-
-        $markdown = MarkdownRenderer::ident("> {$emoji}{$text}", $depth);
+        $markdown = MarkdownRenderer::ident("> {$text}", $depth);
 
         foreach ($block->children as $child) {
             $markdown .= "\n>\n> " . MarkdownRenderer::renderBlock($child, $depth);
