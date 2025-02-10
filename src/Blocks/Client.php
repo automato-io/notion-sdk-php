@@ -2,7 +2,6 @@
 
 namespace Notion\Blocks;
 
-use Notion\Blocks\BlockInterface;
 use Notion\Configuration;
 use Notion\Infrastructure\Http;
 
@@ -50,9 +49,10 @@ class Client
             function (BlockInterface $block) {
                 if ($block->metadata()->hasChildren) {
                     $blockChildren = $this->findChildrenRecursive($block->metadata()->id);
-                    return $block->changeChildren(...$blockChildren);
+                    if (count($blockChildren)) {
+                        return $block->changeChildren(...$blockChildren);
+                    }
                 }
-
                 return $block;
             },
             $children
