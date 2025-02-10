@@ -4,7 +4,6 @@ namespace Notion\Blocks\Renderer;
 
 use Notion\Blocks\BlockInterface;
 use Notion\Blocks\BlockType;
-use Notion\Blocks\Renderer\Markdown;
 
 class MarkdownRenderer implements RendererInterface
 {
@@ -43,6 +42,7 @@ class MarkdownRenderer implements RendererInterface
             BlockType::Paragraph        => Markdown\ParagraphRenderer::render($block, $depth),
             BlockType::Pdf              => Markdown\PdfRenderer::render($block, $depth),
             BlockType::Quote            => Markdown\QuoteRenderer::render($block, $depth),
+            BlockType::Table            => Markdown\TableRenderer::render($block, $depth),
             BlockType::TableOfContents  => Markdown\TableOfContentsRenderer::render($block, $depth),
             BlockType::ToDo             => Markdown\ToDoRenderer::render($block, $depth),
             BlockType::Toggle           => Markdown\ToggleRenderer::render($block, $depth),

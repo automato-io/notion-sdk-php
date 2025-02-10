@@ -34,6 +34,8 @@ class BlockFactory
             BlockType::Paragraph->value        => Paragraph::fromArray($array),
             BlockType::Pdf->value              => Pdf::fromArray($array),
             BlockType::Quote->value            => Quote::fromArray($array),
+            BlockType::Table->value            => Table::fromArray($array),
+            BlockType::TableRow->value         => TableRow::fromArray($array),
             BlockType::TableOfContents->value  => TableOfContents::fromArray($array),
             BlockType::ToDo->value             => ToDo::fromArray($array),
             BlockType::Toggle->value           => Toggle::fromArray($array),
