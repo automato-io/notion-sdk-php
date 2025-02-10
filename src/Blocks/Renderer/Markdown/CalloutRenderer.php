@@ -16,10 +16,10 @@ final class CalloutRenderer implements BlockRendererInterface
         }
 
         $text = RichTextRenderer::render(...$block->text);
-        $markdown = MarkdownRenderer::ident("> {$text}", $depth);
+        $markdown = MarkdownRenderer::ident("> {$text}\n", $depth);
 
         foreach ($block->children as $child) {
-            $markdown .= "\n>\n> " . MarkdownRenderer::renderBlock($child, $depth);
+            $markdown .= "\n>\n> " . MarkdownRenderer::renderBlock($child, $depth + 1);
         }
 
         return $markdown;
