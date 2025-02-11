@@ -16,6 +16,17 @@ final class ImageRenderer implements BlockRendererInterface
         }
 
         $url = $block->file->url;
-        return MarkdownRenderer::ident("![]({$url})", $depth);
+
+        $caption = $alt = '';
+        foreach ($block->file->caption as $v) {
+            $caption .= $v->toString();
+            $alt .= self::removeFigurePrefix($v->toString());
+        }
+
+        return MarkdownRenderer::ident("![$alt]($url)\n$caption\n", $depth);
+    }
+
+    private static function removeFigurePrefix(string $text): string {
+        return preg_replace('/^▲ Fig \d+ - /', '', $text);
     }
 }
