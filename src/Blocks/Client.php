@@ -47,7 +47,7 @@ class Client
         $children = $this->findChildren($blockId);
         return array_map(
             function (BlockInterface $block) {
-                if ($block->metadata()->hasChildren) {
+                if ($block->metadata()->hasChildren && !($block instanceof ChildPage)) {
                     $blockChildren = $this->findChildrenRecursive($block->metadata()->id);
                     if (count($blockChildren)) {
                         return $block->changeChildren(...$blockChildren);
